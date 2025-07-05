@@ -8,12 +8,30 @@ const Contact = () => {
     message: ''
   })
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const [isSubmitting, setIsSubmitting] = useState(false)
+  const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle')
+
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-    // Handle form submission here
-    console.log('Form submitted:', formData)
-    // Reset form
-    setFormData({ name: '', email: '', message: '' })
+    setIsSubmitting(true)
+    setSubmitStatus('idle')
+
+    try {
+      // Simulate form submission - in a real application, this would send to a backend
+      await new Promise(resolve => setTimeout(resolve, 1000))
+      
+      // For now, we'll just show success message
+      // In a real app, replace this with actual email sending logic
+      console.log('Form submitted:', formData)
+      
+      setSubmitStatus('success')
+      setFormData({ name: '', email: '', message: '' })
+    } catch (error) {
+      console.error('Form submission error:', error)
+      setSubmitStatus('error')
+    } finally {
+      setIsSubmitting(false)
+    }
   }
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -52,7 +70,7 @@ const Contact = () => {
               </div>
               <div>
                 <p className="font-medium">Email</p>
-                <p className="text-gray-300">harsh@example.com</p>
+                <p className="text-gray-300">harsh.aryan.dev@gmail.com</p>
               </div>
             </div>
 
@@ -131,11 +149,30 @@ const Contact = () => {
 
             <button
               type="submit"
-              className="w-full flex items-center justify-center space-x-2 bg-gradient-to-r from-blue-600 to-purple-600 text-white font-medium py-3 px-6 rounded-lg hover:from-blue-700 hover:to-purple-700 transition-all duration-300"
+              disabled={isSubmitting}
+              className={`w-full flex items-center justify-center space-x-2 bg-gradient-to-r from-blue-600 to-purple-600 text-white font-medium py-3 px-6 rounded-lg hover:from-blue-700 hover:to-purple-700 transition-all duration-300 ${
+                isSubmitting ? 'opacity-50 cursor-not-allowed' : ''
+              }`}
             >
-              <span>Send Message</span>
+              <span>{isSubmitting ? 'Sending...' : 'Send Message'}</span>
               <Send size={18} />
             </button>
+
+            {submitStatus === 'success' && (
+              <div className="mt-4 p-4 bg-green-600/20 border border-green-600/30 rounded-lg">
+                <p className="text-green-400 text-sm">
+                  Thank you for your message! I'll get back to you soon.
+                </p>
+              </div>
+            )}
+
+            {submitStatus === 'error' && (
+              <div className="mt-4 p-4 bg-red-600/20 border border-red-600/30 rounded-lg">
+                <p className="text-red-400 text-sm">
+                  Sorry, there was an error sending your message. Please try again or contact me directly.
+                </p>
+              </div>
+            )}
           </form>
         </div>
       </div>

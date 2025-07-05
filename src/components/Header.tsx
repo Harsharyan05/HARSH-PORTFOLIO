@@ -53,6 +53,8 @@ const Header = ({ activeSection, setActiveSection }: HeaderProps) => {
           <button
             onClick={() => setIsMenuOpen(!isMenuOpen)}
             className="md:hidden text-gray-300 hover:text-white"
+            aria-label={isMenuOpen ? 'Close navigation menu' : 'Open navigation menu'}
+            aria-expanded={isMenuOpen}
           >
             {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
           </button>

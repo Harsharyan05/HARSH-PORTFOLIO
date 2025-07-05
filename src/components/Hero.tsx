@@ -21,6 +21,7 @@ const Hero = () => {
               target="_blank"
               rel="noopener noreferrer"
               className="p-3 rounded-full bg-gray-800 hover:bg-gray-700 transition-colors"
+              aria-label="Visit Harsh Aryan's GitHub profile"
             >
               <Github size={24} />
             </a>
@@ -29,12 +30,14 @@ const Hero = () => {
               target="_blank"
               rel="noopener noreferrer"
               className="p-3 rounded-full bg-gray-800 hover:bg-gray-700 transition-colors"
+              aria-label="Visit Harsh Aryan's LinkedIn profile"
             >
               <Linkedin size={24} />
             </a>
             <a
-              href="mailto:harsh@example.com"
+              href="mailto:harsh.aryan.dev@gmail.com"
               className="p-3 rounded-full bg-gray-800 hover:bg-gray-700 transition-colors"
+              aria-label="Send email to Harsh Aryan"
             >
               <Mail size={24} />
             </a>

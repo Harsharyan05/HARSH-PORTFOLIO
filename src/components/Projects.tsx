@@ -8,7 +8,7 @@ const Projects = () => {
       technologies: ["React", "TypeScript", "Tailwind CSS", "Vite"],
       github: "https://github.com/harsharyan/portfolio",
       live: "https://harsharyan.dev",
-      image: "/api/placeholder/600/400"
+      icon: "🌐"
     },
     {
       title: "Task Management App",
@@ -16,7 +16,7 @@ const Projects = () => {
       technologies: ["React", "Node.js", "MongoDB", "Socket.io"],
       github: "https://github.com/harsharyan/task-manager",
       live: "https://taskmanager.harsharyan.dev",
-      image: "/api/placeholder/600/400"
+      icon: "📋"
     },
     {
       title: "Weather Dashboard",
@@ -24,7 +24,7 @@ const Projects = () => {
       technologies: ["JavaScript", "Weather API", "Chart.js", "CSS3"],
       github: "https://github.com/harsharyan/weather-dashboard",
       live: "https://weather.harsharyan.dev",
-      image: "/api/placeholder/600/400"
+      icon: "🌤️"
     }
   ]
 
@@ -46,7 +46,7 @@ const Projects = () => {
             className="bg-gray-800/50 rounded-xl overflow-hidden card-hover"
           >
             <div className="h-48 bg-gradient-to-br from-blue-600/20 to-purple-600/20 flex items-center justify-center">
-              <div className="text-6xl opacity-20">🚀</div>
+              <div className="text-6xl opacity-80">{project.icon}</div>
             </div>
             
             <div className="p-6">
@@ -72,6 +72,7 @@ const Projects = () => {
                   target="_blank"
                   rel="noopener noreferrer"
                   className="flex items-center space-x-2 text-gray-300 hover:text-white transition-colors"
+                  aria-label={`View ${project.title} source code on GitHub`}
                 >
                   <Github size={16} />
                   <span className="text-sm">Code</span>
@@ -81,6 +82,7 @@ const Projects = () => {
                   target="_blank"
                   rel="noopener noreferrer"
                   className="flex items-center space-x-2 text-gray-300 hover:text-white transition-colors"
+                  aria-label={`View ${project.title} live demo`}
                 >
                   <ExternalLink size={16} />
                   <span className="text-sm">Live Demo</span>
